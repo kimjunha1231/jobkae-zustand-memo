@@ -11,7 +11,7 @@ const App = () => {
         {memoList.length ? (
           memoList.map((e) => {
             return (
-              <MemoElem key={e.id} id={e.id}>
+              <MemoElem key={e.id} id={e.id} linkValue={e.linkValue}>
                 {e.content}
               </MemoElem>
             );

@@ -2,12 +2,7 @@ import { Children } from "react";
 import styled from "styled-components";
 
 const MemoBoard = (props) => {
-  return (
-    <MemoWrapper>
-      {props.children}
-      <LOL>떠든사람 : 잡캐헨리</LOL>
-    </MemoWrapper>
-  );
+  return <MemoWrapper>{props.children}</MemoWrapper>;
 };
 
 const MemoWrapper = styled.div`

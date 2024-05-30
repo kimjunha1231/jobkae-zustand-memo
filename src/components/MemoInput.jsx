@@ -1,21 +1,29 @@
 import styled from "styled-components";
 import { useMemoStore } from "./../store/MemoList";
 import { useState } from "react";
+
+const LinkInput = styled.input`
+  width: 100%;
+  height: 20%;
+  text-align: center;
+`;
+
 const MemoInput = () => {
   const { addMemo } = useMemoStore();
   const [value, setValue] = useState("");
-
+  const [linkValue, setLinkValue] = useState("");
   return (
     <AddMemoForm
       onSubmit={(e) => {
         e.preventDefault();
-        addMemo(value);
-        
+        addMemo(value, linkValue);
+        setLinkValue("");
         setValue("");
       }}
     >
       <div>
-        <input
+        <div>노션 이름</div>
+        <LinkInput
           type="text"
           onChange={(e) =>
             setValue((prev) => {
@@ -25,6 +33,18 @@ const MemoInput = () => {
             })
           }
           value={value}
+        />
+        <div>노션 링크</div>
+        <LinkInput
+          type="text"
+          onChange={(e) =>
+            setLinkValue((prev) => {
+              if (prev !== e.target.value) {
+                return e.target.value;
+              }
+            })
+          }
+          value={linkValue}
         />
         <button type="submit">저장</button>
       </div>
@@ -45,11 +65,7 @@ const AddMemoForm = styled.form`
     width: 400px;
     height: 200px;
   }
-  input {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-  }
+
   button {
     position: absolute;
     bottom: 0;
